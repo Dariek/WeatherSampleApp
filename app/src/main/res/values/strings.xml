@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">WeatheSampleApp</string>
     <string name="action_settings">Settings</string>
+
+    <string name="dialog_hintText">Enter the name of the city here</string>
+    <string name="dialog_btnAdd">Add</string>
+    <string name="dialog_btnCancel">Cancel</string>
 </resources>

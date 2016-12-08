@@ -5,4 +5,7 @@ package by.dartec.weathesampleapp.ui.add.view;
  */
 
 public interface IACDView {
+    enum State {NET_ERROR, CITY_ERROR, SUCCESS}
+
+    void updateUI(State state);
 }

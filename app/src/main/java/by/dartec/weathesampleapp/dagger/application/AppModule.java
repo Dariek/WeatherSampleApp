@@ -6,6 +6,8 @@ import android.support.annotation.NonNull;
 import javax.inject.Singleton;
 
 import by.dartec.weathesampleapp.data.network.RestAdapter;
+import by.dartec.weathesampleapp.data.repositories.db.DBRepository;
+import by.dartec.weathesampleapp.data.repositories.db.IDBRepository;
 import by.dartec.weathesampleapp.ui.app.presenter.AppPresenter;
 import by.dartec.weathesampleapp.ui.app.presenter.IAppPresenter;
 import dagger.Module;
@@ -39,5 +41,11 @@ public class AppModule {
     @Singleton
     RestAdapter provideRestAdapter() {
         return new RestAdapter();
+    }
+
+    @Provides
+    @Singleton
+    IDBRepository provideDBRepository() {
+        return new DBRepository();
     }
 }

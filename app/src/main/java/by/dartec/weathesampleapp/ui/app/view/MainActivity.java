@@ -9,6 +9,8 @@ import android.widget.TextView;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
@@ -18,9 +20,11 @@ import by.dartec.weathesampleapp.R;
 import by.dartec.weathesampleapp.MyApp;
 import by.dartec.weathesampleapp.data.network.RestAdapter;
 import by.dartec.weathesampleapp.data.network.Urls;
+import by.dartec.weathesampleapp.ui.add.view.AddCityDialod;
 import by.dartec.weathesampleapp.ui.main.view.MainViewFragment;
 import by.dartec.weathesampleapp.ui.app.presenter.IAppPresenter;
 import by.dartec.weathesampleapp.ui.details.view.DetailsFragment;
+import by.dartec.weathesampleapp.utils.MyLog;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -49,16 +53,34 @@ public class MainActivity extends AppCompatActivity implements IAppView {
         presenter.bindView(this);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show());
+        fab.setOnClickListener(view -> {
+            AddCityDialod.newInstance().show(getFragmentManager(), AddCityDialod.TAG);
+            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
+        });
 
-        rest.getAPI().getWeather("Minsk", Urls.KEY)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(resp -> {
-                    Toast.makeText(this, resp.toString(), Toast.LENGTH_LONG);
-                }, t -> {                    Toast.makeText(this, t.getMessage(), Toast.LENGTH_LONG);
-                });
+//        rest.getAPI().getAllWeather(//new String[]{"524901","703448","2643743"}
+//                Urls.KEY, Urls.UNITS_KEY,
+//             //   new String[]{"524901","703448","2643743"})
+//                "524901,703448,2643743,")
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(resp -> {
+//                    MyLog.myLog("size: " + resp.getList().size() + ";\n" + resp.getList().get(0).toString());
+//                }, t -> {
+//                    MyLog.errLog(t.getMessage());
+//                });
+//        ArrayList<String> m = new ArrayList<String>(){{
+//            add("524901");
+//            add("703448");
+//            add("2643743");
+//        }};
+//        StringBuilder builder = new StringBuilder();
+//        for(String s : m){
+//            builder.append(s);
+//            builder.append(',');
+//        }
+//        MyLog.myLog(builder.toString());
     }
 
     @Override

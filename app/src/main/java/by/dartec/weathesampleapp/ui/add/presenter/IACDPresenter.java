@@ -7,6 +7,8 @@ import by.dartec.weathesampleapp.ui.add.view.IACDView;
  */
 
 public interface IACDPresenter {
+    void addCity(String name);
+
     void bindView(IACDView view);
     void unbindView();
 }

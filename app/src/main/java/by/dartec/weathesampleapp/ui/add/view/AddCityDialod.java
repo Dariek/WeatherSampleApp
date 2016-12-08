@@ -1,20 +1,24 @@
 package by.dartec.weathesampleapp.ui.add.view;
 
-import android.app.DialogFragment;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.EditText;
+import android.app.DialogFragment;
+import android.view.LayoutInflater;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import javax.inject.Inject;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
+import by.dartec.weathesampleapp.ui.add.presenter.IACDPresenter;
 import by.dartec.weathesampleapp.MyApp;
 import by.dartec.weathesampleapp.R;
-import by.dartec.weathesampleapp.ui.add.presenter.IACDPresenter;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by root on 07.12.16.
@@ -22,7 +26,11 @@ import by.dartec.weathesampleapp.ui.add.presenter.IACDPresenter;
 
 public class AddCityDialod extends DialogFragment implements IACDView {
     public static final String TAG = "AddCityDialod";
+
     private Unbinder butterKnife;
+
+    @BindView(R.id.edCityName)
+    EditText edCityName;
 
     @Inject
     IACDPresenter presenter;
@@ -40,6 +48,9 @@ public class AddCityDialod extends DialogFragment implements IACDView {
         butterKnife = ButterKnife.bind(this, rootView);
         presenter.bindView(this);
 
+        getDialog().getWindow().setBackgroundDrawableResource(R.drawable.empty);
+        getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+
         return rootView;
     }
 
@@ -48,5 +59,28 @@ public class AddCityDialod extends DialogFragment implements IACDView {
         super.onDestroyView();
         butterKnife.unbind();
         presenter.unbindView();
+    }
+
+    @OnClick(R.id.btnCancel)
+    void close() {
+        dismiss();
+    }
+
+    @OnClick(R.id.btnAdd)
+    void ckeck() {
+        presenter.addCity(edCityName.getText().toString());
+    }
+
+    @Override
+    public void updateUI(State state) {
+        switch (state) {
+            case CITY_ERROR:
+                break;
+            case NET_ERROR:
+                break;
+            case SUCCESS:
+                dismiss();
+                break;
+        }
     }
 }
