@@ -7,6 +7,7 @@ import by.dartec.weathesampleapp.ui.details.view.IDetailsView;
  */
 
 public interface IDetailsPresenter {
+    void load();
     void bindView(IDetailsView view);
     void unbindView();
 }

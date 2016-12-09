@@ -7,7 +7,9 @@ import by.dartec.weathesampleapp.ui.app.view.IAppView;
  */
 
 public interface IAppPresenter {
-    void backPressed();
+    void showArrow();
+    void hideArrow();
+
     void replaceByTag(String... str);
 
     void bindView(IAppView view);

@@ -1,15 +1,13 @@
 package by.dartec.weathesampleapp.ui.app.view;
 
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.design.widget.Snackbar;
 import android.support.annotation.IdRes;
 import android.app.FragmentTransaction;
 import android.widget.TextView;
 import android.os.Bundle;
-import android.widget.Toast;
-
-import java.util.ArrayList;
 
 import javax.inject.Inject;
 
@@ -19,14 +17,10 @@ import butterknife.ButterKnife;
 import by.dartec.weathesampleapp.R;
 import by.dartec.weathesampleapp.MyApp;
 import by.dartec.weathesampleapp.data.network.RestAdapter;
-import by.dartec.weathesampleapp.data.network.Urls;
 import by.dartec.weathesampleapp.ui.add.view.AddCityDialod;
 import by.dartec.weathesampleapp.ui.main.view.MainViewFragment;
 import by.dartec.weathesampleapp.ui.app.presenter.IAppPresenter;
 import by.dartec.weathesampleapp.ui.details.view.DetailsFragment;
-import by.dartec.weathesampleapp.utils.MyLog;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 import static by.dartec.weathesampleapp.R.id.blanck;
 
@@ -61,8 +55,16 @@ public class MainActivity extends AppCompatActivity implements IAppView {
     }
 
     @Override
-    public void back() {
-        onBackPressed();
+    public void showArrow() {
+        txtTitle.setCompoundDrawablesWithIntrinsicBounds(
+                ContextCompat.getDrawable(this, R.drawable.back), null, null, null);
+        txtTitle.setOnClickListener(view -> onBackPressed());
+    }
+
+    @Override
+    public void hideArrow() {
+        txtTitle.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
+        txtTitle.setOnClickListener(null);
     }
 
     @Override
@@ -95,6 +97,5 @@ public class MainActivity extends AppCompatActivity implements IAppView {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-//        presenter.backPressed();
     }
 }

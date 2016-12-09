@@ -14,9 +14,13 @@ public class AppPresenter implements IAppPresenter {
     }
 
     @Override
-    public void backPressed() {
-        view.back();
-//        view.replaceByTag(MainViewFragment.TAG);
+    public void showArrow() {
+        view.showArrow();
+    }
+
+    @Override
+    public void hideArrow() {
+        view.hideArrow();
     }
 
     @Override

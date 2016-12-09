@@ -32,7 +32,8 @@ public class DetailsPresenter implements IDetailsPresenter {
         view = null;
     }
 
-    private void load() {
+    @Override
+    public void load() {
         view.showProgress();
         subscription = interactor.getWeatherForecast(view.getID())
                 .subscribeOn(Schedulers.io())

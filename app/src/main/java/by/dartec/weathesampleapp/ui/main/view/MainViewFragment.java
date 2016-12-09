@@ -65,11 +65,13 @@ public class MainViewFragment extends Fragment implements IMainView {
         butterKnife = ButterKnife.bind(this, rootView);
         presenter.bindView(this);
 
-        adapter.setOnItemClickListener((view, position) -> {
-            presenter.onItemClick(position);});
+        adapter.setOnItemClickListener((view, position) -> presenter.onItemClick(position));
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(rootView.getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recWeather.setLayoutManager(linearLayoutManager);
+
+        appPresenter.hideArrow();
+        getActivity().findViewById(R.id.imgUpdate).setOnClickListener(view -> presenter.getWeather());
 
         return rootView;
     }
@@ -84,6 +86,7 @@ public class MainViewFragment extends Fragment implements IMainView {
 
     @Override
     public void showProgress() {
+        adapter.clean();
         prBar.setVisibility(View.VISIBLE);
     }
 

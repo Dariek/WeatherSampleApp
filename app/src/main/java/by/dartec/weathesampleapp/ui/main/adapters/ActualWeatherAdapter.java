@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.Collections;
 import java.util.List;
 
 import by.dartec.weathesampleapp.R;
@@ -53,6 +54,11 @@ public class ActualWeatherAdapter extends RecyclerView.Adapter<ActualWeatherAdap
 
         loadImage(holder.imgIcon,
                 "http://openweathermap.org/img/w/" + item.getWeather()[0].getIcon() + ".png");
+    }
+
+    public void clean() {
+        items = Collections.emptyList();
+        notifyDataSetChanged();
     }
 
     private void setText(TextView view, String text) {

@@ -76,6 +76,9 @@ public class DetailsFragment extends Fragment implements IDetailsView {
         recWeather.setAdapter(adapter);
         adapter.clean();
 
+        appPresenter.showArrow();
+        getActivity().findViewById(R.id.imgUpdate).setOnClickListener(view -> presenter.load());
+
         return rootView;
     }
 
@@ -103,6 +106,7 @@ public class DetailsFragment extends Fragment implements IDetailsView {
 
     @Override
     public void showProgress() {
+        adapter.clean();
         prBar.setVisibility(View.VISIBLE);
     }
 
