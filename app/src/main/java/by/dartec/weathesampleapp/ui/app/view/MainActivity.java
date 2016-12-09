@@ -55,36 +55,19 @@ public class MainActivity extends AppCompatActivity implements IAppView {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(view -> {
             AddCityDialod.newInstance().show(getFragmentManager(), AddCityDialod.TAG);
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+            Snackbar.make(view, "Add city dialog", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
         });
-
-//        rest.getAPI().getAllWeather(//new String[]{"524901","703448","2643743"}
-//                Urls.KEY, Urls.UNITS_KEY,
-//             //   new String[]{"524901","703448","2643743"})
-//                "524901,703448,2643743,")
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(resp -> {
-//                    MyLog.myLog("size: " + resp.getList().size() + ";\n" + resp.getList().get(0).toString());
-//                }, t -> {
-//                    MyLog.errLog(t.getMessage());
-//                });
-//        ArrayList<String> m = new ArrayList<String>(){{
-//            add("524901");
-//            add("703448");
-//            add("2643743");
-//        }};
-//        StringBuilder builder = new StringBuilder();
-//        for(String s : m){
-//            builder.append(s);
-//            builder.append(',');
-//        }
-//        MyLog.myLog(builder.toString());
     }
 
     @Override
-    public void replaceByTag(String TAG) {
+    public void back() {
+        onBackPressed();
+    }
+
+    @Override
+    public void replaceByTag(String... str) {
+        String TAG = str[0];
         txtTitle.setText(TAG);
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         switch (TAG) {
@@ -92,7 +75,8 @@ public class MainActivity extends AppCompatActivity implements IAppView {
                 transaction.replace(id, MainViewFragment.newInstance(), MainViewFragment.TAG);
                 break;
             case DetailsFragment.TAG:
-                transaction.replace(id, DetailsFragment.newInstance(), DetailsFragment.TAG);
+                transaction.replace(id, DetailsFragment.newInstance(str[1]), DetailsFragment.TAG)
+                        .addToBackStack(TAG);
                 break;
             default:
                 transaction.replace(id, MainViewFragment.newInstance(), MainViewFragment.TAG);
@@ -110,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements IAppView {
 
     @Override
     public void onBackPressed() {
-//        super.onBackPressed();
-        presenter.backPressed();
+        super.onBackPressed();
+//        presenter.backPressed();
     }
 }

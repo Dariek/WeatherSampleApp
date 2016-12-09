@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +22,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import by.dartec.weathesampleapp.MyApp;
 import by.dartec.weathesampleapp.R;
-import by.dartec.weathesampleapp.data.network.models.ActualWeatherResponse;
+import by.dartec.weathesampleapp.data.network.models.weather.ActualWeatherResponse;
 import by.dartec.weathesampleapp.ui.app.presenter.IAppPresenter;
 import by.dartec.weathesampleapp.ui.details.view.DetailsFragment;
 import by.dartec.weathesampleapp.ui.main.adapters.ActualWeatherAdapter;
@@ -64,11 +65,12 @@ public class MainViewFragment extends Fragment implements IMainView {
         butterKnife = ButterKnife.bind(this, rootView);
         presenter.bindView(this);
 
-//        recWeather.setAdapter(adapter);
         adapter.setOnItemClickListener((view, position) -> {
-            //TODO предать параметры
-            appPresenter.replaceByTag(DetailsFragment.TAG);
-        });
+            presenter.onItemClick(position);});
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(rootView.getContext());
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recWeather.setLayoutManager(linearLayoutManager);
+
         return rootView;
     }
 
@@ -91,18 +93,19 @@ public class MainViewFragment extends Fragment implements IMainView {
 
     @Override
     public void loadingError() {
+        prBar.setVisibility(View.GONE);
+    }
 
+    @Override
+    public void onItemClick(String id) {
+        appPresenter.replaceByTag(DetailsFragment.TAG, id);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void updateAllWeather(ArrayList<ActualWeatherResponse> resp) {
-        MyLog.myLog("success, size = " + resp.size());
-
         items = resp;
-        ActualWeatherAdapter adapter = new ActualWeatherAdapter(getContext(), resp);
-//        adapter.setData(items);
-//        adapter.notifyDataSetChanged();
+        adapter.setData(items);
         recWeather.setAdapter(adapter);
     }
 

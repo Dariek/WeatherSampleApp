@@ -1,46 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:gravity="center_horizontal"
-    android:id="@+id/tableLayout">
+    android:padding="10dp">
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <TextView
+        android:text="temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtTemp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_gravity="start"
+        android:gravity="top|start"
+        android:textColor="@color/secondaryText"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignBottom="@+id/txtCity"
+        android:paddingEnd="5dp"
+        android:paddingStart="5dp"
+        android:ems="3"/>
 
-        <TextView
-            android:text="City"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtCity"
-            android:layout_column="0"/>
+    <TextView
+        android:text="City"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtCity"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_gravity="center_vertical"
+        android:gravity="end"
+        android:textColor="@color/primaryText"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/txtTemp"
+        android:paddingEnd="5dp"
+        android:paddingStart="5dp"
+        android:singleLine="true"
+        android:ems="4"/>
 
-        <TextView
-            android:text="temp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtTemp"
-            android:layout_column="1"/>
-    </TableRow>
+    <TextView
+        android:text="min max"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtMinMaxTemp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_gravity="start"
+        android:gravity="start"
+        android:textColor="@color/secondaryText"
+        android:layout_below="@+id/txtTemp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignStart="@+id/txtTemp"
+        android:paddingEnd="5dp"
+        android:paddingStart="5dp"
+        android:paddingBottom="5dp"
+        android:ems="3"/>
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <TextView
+        android:text="humidity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtHumidity"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_gravity="end"
+        android:gravity="end"
+        android:textColor="@color/secondaryText"
+        android:layout_below="@+id/txtCity"
+        android:layout_alignStart="@+id/txtCity"
+        android:layout_alignBottom="@+id/txtMinMaxTemp"
+        android:layout_toStartOf="@+id/txtTemp"
+        android:paddingEnd="5dp"
+        android:paddingStart="5dp"
+        android:paddingBottom="5dp" />
 
-        <TextView
-            android:text="humidity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtHumidity"
-            android:layout_column="0"/>
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:srcCompat="@android:drawable/ic_menu_gallery"
+        android:id="@+id/imgIcon"
+        android:scaleType="centerCrop"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/txtCity" />
 
-        <TextView
-            android:text="min max"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtMinMaxTemp"
-            android:layout_column="1"/>
-    </TableRow>
-</TableLayout>
+</RelativeLayout>

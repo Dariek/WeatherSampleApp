@@ -3,6 +3,7 @@ package by.dartec.weathesampleapp.data.repositories.db;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+import by.dartec.weathesampleapp.data.network.models.forecast.ForecastWeatherResponse;
 import rx.Observable;
 
 /**
@@ -11,18 +12,22 @@ import rx.Observable;
 
 public class DBRepository implements IDBRepository {
 
+    //Эмитация получения данных из базы
     @Override
     public Observable<String> getAllCitiesIds() {
-        return Observable.timer(0, TimeUnit.SECONDS)
+        return Observable.timer(1, TimeUnit.SECONDS)
                 .flatMap(aLong ->
                         Observable.fromCallable(() ->
-                                convertToString(
-                                        new ArrayList<String>(){{
-                                            add("524901");
-                                            add("703448");
-                                            add("2643743");
-                                        }})
+                                convertToString(getCityIDs())
                         ));
+    }
+
+    //Эмитация получения данных из базы
+    @Override
+    public Observable<ForecastWeatherResponse> getOldForecastByID(String id) {
+        return Observable.timer(1, TimeUnit.SECONDS)
+                .flatMap(aLong ->
+                        Observable.fromCallable(this::getOldForecast));
     }
 
     private String convertToString(ArrayList<String> items) {
@@ -32,5 +37,17 @@ public class DBRepository implements IDBRepository {
             builder.append(',');
         }
         return builder.toString();
+    }
+
+    private ArrayList<String> getCityIDs() {
+        return new ArrayList<String>(){{
+            add("524901");
+            add("703448");
+            add("2643743");
+        }};
+    }
+
+    private ForecastWeatherResponse getOldForecast() {
+        return new ForecastWeatherResponse();
     }
 }

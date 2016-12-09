@@ -15,12 +15,13 @@ public class AppPresenter implements IAppPresenter {
 
     @Override
     public void backPressed() {
-        view.replaceByTag(MainViewFragment.TAG);
+        view.back();
+//        view.replaceByTag(MainViewFragment.TAG);
     }
 
     @Override
-    public void replaceByTag(String TAG) {
-        view.replaceByTag(TAG);
+    public void replaceByTag(String... str) {
+        view.replaceByTag(str);
     }
 
     @Override

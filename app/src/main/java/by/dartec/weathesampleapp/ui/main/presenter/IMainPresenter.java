@@ -7,6 +7,8 @@ import by.dartec.weathesampleapp.ui.main.view.IMainView;
  */
 
 public interface IMainPresenter {
+    void onItemClick(int position);
+
     void getWeather();
     void updateWeather(String city, int pos);
 

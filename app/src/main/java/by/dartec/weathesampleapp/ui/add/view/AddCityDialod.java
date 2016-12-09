@@ -43,7 +43,7 @@ public class AddCityDialod extends DialogFragment implements IACDView {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.details_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.add_dialog, container, false);
         MyApp.get().plusAddComponent().inject(this);
         butterKnife = ButterKnife.bind(this, rootView);
         presenter.bindView(this);

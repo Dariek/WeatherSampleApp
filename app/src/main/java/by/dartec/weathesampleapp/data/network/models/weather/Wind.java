@@ -1,4 +1,4 @@
-package by.dartec.weathesampleapp.data.network.models;
+package by.dartec.weathesampleapp.data.network.models.weather;
 
 /**
  * Created by root on 07.12.16.

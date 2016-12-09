@@ -1,13 +1,13 @@
-package by.dartec.weathesampleapp.data.network.models;
+package by.dartec.weathesampleapp.data.network.models.forecast;
 
 /**
- * Created by root on 07.12.16.
+ * Created by root on 09.12.16.
  */
 
 public class Weather {
     private String description;
-    private String main;
     private String icon;
+    private String main;
     private String id;
 
     public String getId() {

@@ -1,6 +1,10 @@
 package by.dartec.weathesampleapp.ui.main.presenter;
 
+import java.util.ArrayList;
+
 import by.dartec.weathesampleapp.business.main.IMainInteractor;
+import by.dartec.weathesampleapp.data.network.models.weather.ActualWeatherResponse;
+import by.dartec.weathesampleapp.data.network.models.weather.GroupResponse;
 import by.dartec.weathesampleapp.ui.main.view.IMainView;
 import by.dartec.weathesampleapp.utils.MyLog;
 import rx.Subscription;
@@ -13,11 +17,20 @@ import rx.schedulers.Schedulers;
 
 public class MainPresenter implements IMainPresenter {
     private IMainInteractor interactor;
-    private IMainView view;
     private Subscription subscription;
+    private GroupResponse response;
+    private IMainView view;
 
     public MainPresenter(IMainInteractor interactor) {
         this.interactor = interactor;
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        ArrayList<ActualWeatherResponse> buf = response.getList();
+        if(buf.size() > position) {
+            view.onItemClick(buf.get(position).getId());
+        }
     }
 
     @Override
@@ -30,6 +43,7 @@ public class MainPresenter implements IMainPresenter {
                         resp -> {
                             view.hideProgress();
                             view.updateAllWeather(resp.getList());
+                            response = resp;
                         }, t -> {
                             view.loadingError();
                             MyLog.errLog(t.getMessage());

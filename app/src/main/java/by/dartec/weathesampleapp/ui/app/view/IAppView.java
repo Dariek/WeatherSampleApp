@@ -5,5 +5,6 @@ package by.dartec.weathesampleapp.ui.app.view;
  */
 
 public interface IAppView {
-    void replaceByTag(String TAG);
+    void back();
+    void replaceByTag(String... str);
 }

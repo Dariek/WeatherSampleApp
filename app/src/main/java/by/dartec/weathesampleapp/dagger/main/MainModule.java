@@ -2,6 +2,8 @@ package by.dartec.weathesampleapp.dagger.main;
 
 import android.content.Context;
 
+import java.util.Collections;
+
 import by.dartec.weathesampleapp.business.main.IMainInteractor;
 import by.dartec.weathesampleapp.business.main.MainInteractor;
 import by.dartec.weathesampleapp.data.network.RestAdapter;
@@ -28,7 +30,7 @@ public class MainModule {
     @Provides
     @MainScope
     ActualWeatherAdapter provideWeatherAdapter(Context context) {
-        return new ActualWeatherAdapter(context);
+        return new ActualWeatherAdapter(context, Collections.emptyList());
     }
 
     @Provides

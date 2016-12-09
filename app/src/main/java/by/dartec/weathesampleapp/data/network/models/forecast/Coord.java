@@ -1,7 +1,7 @@
-package by.dartec.weathesampleapp.data.network.models;
+package by.dartec.weathesampleapp.data.network.models.forecast;
 
 /**
- * Created by root on 07.12.16.
+ * Created by root on 09.12.16.
  */
 
 public class Coord {

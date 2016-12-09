@@ -1,7 +1,7 @@
 package by.dartec.weathesampleapp.business.main;
 
-import by.dartec.weathesampleapp.data.network.models.ActualWeatherResponse;
-import by.dartec.weathesampleapp.data.network.models.GroupResponse;
+import by.dartec.weathesampleapp.data.network.models.weather.ActualWeatherResponse;
+import by.dartec.weathesampleapp.data.network.models.weather.GroupResponse;
 import rx.Observable;
 
 /**

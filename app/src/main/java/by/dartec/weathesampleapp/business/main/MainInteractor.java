@@ -2,9 +2,9 @@ package by.dartec.weathesampleapp.business.main;
 
 import by.dartec.weathesampleapp.data.network.Urls;
 import by.dartec.weathesampleapp.data.network.RestAdapter;
-import by.dartec.weathesampleapp.data.network.models.GroupResponse;
+import by.dartec.weathesampleapp.data.network.models.weather.GroupResponse;
 import by.dartec.weathesampleapp.data.repositories.db.IDBRepository;
-import by.dartec.weathesampleapp.data.network.models.ActualWeatherResponse;
+import by.dartec.weathesampleapp.data.network.models.weather.ActualWeatherResponse;
 import rx.Observable;
 
 /**

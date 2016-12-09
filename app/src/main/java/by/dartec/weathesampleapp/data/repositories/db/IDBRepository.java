@@ -1,9 +1,7 @@
 package by.dartec.weathesampleapp.data.repositories.db;
 
-import java.util.ArrayList;
-
+import by.dartec.weathesampleapp.data.network.models.forecast.ForecastWeatherResponse;
 import rx.Observable;
-import rx.Single;
 
 /**
  * Created by root on 08.12.16.
@@ -11,4 +9,7 @@ import rx.Single;
 
 public interface IDBRepository {
     Observable<String> getAllCitiesIds();
+
+    Observable<ForecastWeatherResponse> getOldForecastByID(String id);
+
 }

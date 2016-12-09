@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="5dp">
+
+    <TextView
+        android:text="min max"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtMinMaxTemp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_gravity="start"
+        android:gravity="start"
+        android:textColor="@color/secondaryText"
+        android:layout_below="@+id/txtTemp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignStart="@+id/txtTemp"
+        android:paddingEnd="5dp"
+        android:paddingStart="5dp"
+        android:paddingBottom="5dp"
+        android:ems="4"/>
+
+    <TextView
+        android:text="humidity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtHumidity"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_gravity="end"
+        android:gravity="end"
+        android:textColor="@color/secondaryText"
+        android:layout_below="@+id/txtCity"
+        android:layout_alignStart="@+id/txtCity"
+        android:layout_alignBottom="@+id/txtMinMaxTemp"
+        android:layout_toStartOf="@+id/txtTemp"
+        android:paddingEnd="5dp"
+        android:paddingStart="5dp"
+        android:paddingBottom="5dp" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtDate"
+        android:textColor="@color/secondaryText"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="5dp"/>
+
+    <TextView
+        android:text="temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtTemp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_gravity="start"
+        android:gravity="top|start"
+        android:textColor="@color/secondaryText"
+        android:paddingEnd="5dp"
+        android:paddingStart="5dp"
+        android:ems="4"
+        android:layout_below="@+id/txtDate"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="Temperature:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtCity"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_gravity="center_vertical"
+        android:gravity="end"
+        android:textColor="@color/primaryText"
+        android:paddingEnd="5dp"
+        android:paddingStart="5dp"
+        android:singleLine="true"
+        android:ems="6"
+        android:layout_alignBaseline="@+id/txtTemp"
+        android:layout_alignBottom="@+id/txtTemp"
+        android:layout_toStartOf="@+id/txtTemp" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtTime"
+        android:textColor="@color/secondaryText"
+        android:layout_below="@+id/imgIcon"
+        android:layout_toStartOf="@+id/txtHumidity" />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:srcCompat="@android:drawable/ic_menu_gallery"
+        android:id="@+id/imgIcon"
+        android:scaleType="centerCrop"
+        android:layout_alignTop="@+id/txtCity"
+        android:layout_toStartOf="@+id/txtHumidity" />
+
+</RelativeLayout>

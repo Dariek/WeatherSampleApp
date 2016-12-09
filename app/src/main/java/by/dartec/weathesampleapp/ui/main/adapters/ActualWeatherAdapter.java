@@ -3,16 +3,17 @@ package by.dartec.weathesampleapp.ui.main.adapters;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.content.Context;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.view.ViewGroup;
 import android.view.View;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
-import java.util.Collections;
 
 import by.dartec.weathesampleapp.R;
-import by.dartec.weathesampleapp.utils.MyLog;
-import by.dartec.weathesampleapp.data.network.models.ActualWeatherResponse;
+import by.dartec.weathesampleapp.data.network.models.weather.ActualWeatherResponse;
 
 /**
  * Created by root on 08.12.16.
@@ -22,14 +23,12 @@ public class ActualWeatherAdapter extends RecyclerView.Adapter<ActualWeatherAdap
     private OnItemClickListener mItemClickListener;
     private List<ActualWeatherResponse> items;
     private LayoutInflater lInflater;
+    private Context context;
 
-    public ActualWeatherAdapter(Context context){
-        lInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        items = Collections.emptyList();
-    }
     public ActualWeatherAdapter(Context context, List<ActualWeatherResponse> items){
         lInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.items = items;
+        this.context = context;
     }
 
     @Override
@@ -49,11 +48,19 @@ public class ActualWeatherAdapter extends RecyclerView.Adapter<ActualWeatherAdap
         setText(holder.txtMinMaxTemp,
                 "min: " + item.getMain().getTemp_min() + "\n"
                 + "max: " + item.getMain().getTemp_max());
-        MyLog.myLog("pos: " + position);
+
+        holder.item.setOnClickListener(view -> mItemClickListener.onItemClick(view, position));
+
+        loadImage(holder.imgIcon,
+                "http://openweathermap.org/img/w/" + item.getWeather()[0].getIcon() + ".png");
     }
 
     private void setText(TextView view, String text) {
         view.setText(text);
+    }
+
+    private void loadImage(ImageView view, String url) {
+        Picasso.with(context).load(url).into(view);
     }
 
     @Override
@@ -75,12 +82,16 @@ public class ActualWeatherAdapter extends RecyclerView.Adapter<ActualWeatherAdap
     }
 
     class ActualWeatherViewHolder extends RecyclerView.ViewHolder {
+        public View item;
+        public ImageView imgIcon;
         public TextView txtCity, txtTemp, txtHumidity, txtMinMaxTemp;
 
         public ActualWeatherViewHolder(View itemView) {
             super(itemView);
+            item = itemView;
             txtMinMaxTemp = (TextView) itemView.findViewById(R.id.txtMinMaxTemp);
             txtHumidity = (TextView) itemView.findViewById(R.id.txtHumidity);
+            imgIcon = (ImageView) itemView.findViewById(R.id.imgIcon);
             txtCity = (TextView) itemView.findViewById(R.id.txtCity);
             txtTemp = (TextView) itemView.findViewById(R.id.txtTemp);
         }
