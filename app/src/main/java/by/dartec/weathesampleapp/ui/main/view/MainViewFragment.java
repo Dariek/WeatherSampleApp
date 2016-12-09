@@ -79,6 +79,7 @@ public class MainViewFragment extends Fragment implements IMainView {
         super.onDestroyView();
         butterKnife.unbind();
         presenter.unbindView();
+        MyApp.get().clearMainComponent();
     }
 
     @Override

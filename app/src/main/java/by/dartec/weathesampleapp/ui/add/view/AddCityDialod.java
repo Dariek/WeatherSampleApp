@@ -59,6 +59,7 @@ public class AddCityDialod extends DialogFragment implements IACDView {
         super.onDestroyView();
         butterKnife.unbind();
         presenter.unbindView();
+        MyApp.get().clearAddComponent();
     }
 
     @OnClick(R.id.btnCancel)

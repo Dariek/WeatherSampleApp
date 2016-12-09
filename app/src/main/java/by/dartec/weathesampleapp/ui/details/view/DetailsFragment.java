@@ -84,6 +84,7 @@ public class DetailsFragment extends Fragment implements IDetailsView {
         super.onDestroyView();
         butterKnife.unbind();
         presenter.unbindView();
+        MyApp.get().clearDetailsComponent();
     }
 
     @Override
