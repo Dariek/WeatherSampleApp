@@ -51,18 +51,6 @@ public class MainPresenter implements IMainPresenter {
     }
 
     @Override
-    public void updateWeather(String city, int pos) {
-        subscription = interactor.getWeather(city)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(resp -> {
-                    MyLog.myLog(resp.toString());
-                }, t -> {
-                    MyLog.errLog(t.getMessage());
-                });
-    }
-
-    @Override
     public void bindView(IMainView view) {
         this.view = view;
         getWeather();

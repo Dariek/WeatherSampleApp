@@ -10,7 +10,6 @@ public interface IMainPresenter {
     void onItemClick(int position);
 
     void getWeather();
-    void updateWeather(String city, int pos);
 
     void bindView(IMainView view);
     void unbindView();

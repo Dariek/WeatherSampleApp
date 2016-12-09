@@ -13,5 +13,4 @@ public interface IMainView extends ILoadingState{
 
     void onItemClick(String id);
     void updateAllWeather(ArrayList<ActualWeatherResponse> resp);
-    void updateWeatherByPosition(ActualWeatherResponse resp, int position);
 }
