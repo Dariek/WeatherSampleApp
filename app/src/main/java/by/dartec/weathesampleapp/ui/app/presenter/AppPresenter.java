@@ -14,6 +14,11 @@ public class AppPresenter implements IAppPresenter {
     }
 
     @Override
+    public void addCityClick() {
+        view.showDialog();
+    }
+
+    @Override
     public void showArrow() {
         view.showArrow();
     }

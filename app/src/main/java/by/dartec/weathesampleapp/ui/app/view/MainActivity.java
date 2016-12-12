@@ -1,9 +1,7 @@
 package by.dartec.weathesampleapp.ui.app.view;
 
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.design.widget.Snackbar;
 import android.support.annotation.IdRes;
 import android.app.FragmentTransaction;
 import android.widget.TextView;
@@ -12,6 +10,7 @@ import android.os.Bundle;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 import butterknife.ButterKnife;
 import by.dartec.weathesampleapp.R;
@@ -45,17 +44,21 @@ public class MainActivity extends AppCompatActivity implements IAppView {
         MyApp.get().getComponent().inject(this);
         butterKnife = ButterKnife.bind(this);
         presenter.bindView(this);
+    }
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(view -> {
-            AddCityDialod.newInstance().show(getFragmentManager(), AddCityDialod.TAG);
-            Snackbar.make(view, "Add city dialog", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
-        });
+    @OnClick(R.id.fab)
+    public void addCityClick() {
+        presenter.addCityClick();
+    }
+
+    @Override
+    public void showDialog() {
+        AddCityDialod.newInstance().show(getFragmentManager(), AddCityDialod.TAG);
     }
 
     @Override
     public void showArrow() {
+        txtTitle.setText(getString(R.string.screen_title_details));
         txtTitle.setCompoundDrawablesWithIntrinsicBounds(
                 ContextCompat.getDrawable(this, R.drawable.back), null, null, null);
         txtTitle.setOnClickListener(view -> onBackPressed());
@@ -63,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements IAppView {
 
     @Override
     public void hideArrow() {
+        txtTitle.setText(getString(R.string.screen_title_main));
         txtTitle.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
         txtTitle.setOnClickListener(null);
     }

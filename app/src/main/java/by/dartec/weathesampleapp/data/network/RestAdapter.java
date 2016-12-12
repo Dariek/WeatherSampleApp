@@ -1,5 +1,6 @@
 package by.dartec.weathesampleapp.data.network;
 
+import by.dartec.weathesampleapp.utils.base.StringUtils;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -14,7 +15,7 @@ public class RestAdapter {
 
     public RestAdapter() {
         retrofit = new Retrofit.Builder()
-                .baseUrl(Urls.BASE_URL)
+                .baseUrl(StringUtils.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();

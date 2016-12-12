@@ -30,6 +30,7 @@ public class DBRepository implements IDBRepository {
                         Observable.fromCallable(this::getOldForecast));
     }
 
+    //Формирование строки с id-шниками городов
     private String convertToString(ArrayList<String> items) {
         StringBuilder builder = new StringBuilder();
         for(String s : items){
@@ -39,6 +40,7 @@ public class DBRepository implements IDBRepository {
         return builder.toString();
     }
 
+    //Эмитация получения данных из базы
     private ArrayList<String> getCityIDs() {
         return new ArrayList<String>(){{
             add("524901");

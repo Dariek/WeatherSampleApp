@@ -5,6 +5,8 @@ package by.dartec.weathesampleapp.ui.app.view;
  */
 
 public interface IAppView {
+    void showDialog();
+
     void showArrow();
     void hideArrow();
 

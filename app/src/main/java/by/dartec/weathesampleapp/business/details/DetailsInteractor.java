@@ -1,7 +1,7 @@
 package by.dartec.weathesampleapp.business.details;
 
 import rx.Observable;
-import by.dartec.weathesampleapp.data.network.Urls;
+import by.dartec.weathesampleapp.utils.base.StringUtils;
 import by.dartec.weathesampleapp.data.network.RestAdapter;
 import by.dartec.weathesampleapp.data.repositories.db.IDBRepository;
 import by.dartec.weathesampleapp.data.network.models.forecast.ForecastWeatherResponse;
@@ -25,7 +25,7 @@ public class DetailsInteractor implements IDetailsInteractor {
         return db.getOldForecastByID(id)
                 .flatMap(response -> isDataFresh(response)
                         ? Observable.fromCallable(() -> response)
-                        : rest.getAPI().getWeatherForecast(id, Urls.KEY, Urls.UNITS_KEY));
+                        : rest.getAPI().getWeatherForecast(id, StringUtils.KEY, StringUtils.UNITS_KEY));
     }
 
     private boolean isDataFresh(ForecastWeatherResponse response) {

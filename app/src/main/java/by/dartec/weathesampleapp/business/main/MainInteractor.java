@@ -1,6 +1,6 @@
 package by.dartec.weathesampleapp.business.main;
 
-import by.dartec.weathesampleapp.data.network.Urls;
+import by.dartec.weathesampleapp.utils.base.StringUtils;
 import by.dartec.weathesampleapp.data.network.RestAdapter;
 import by.dartec.weathesampleapp.data.network.models.weather.GroupResponse;
 import by.dartec.weathesampleapp.data.repositories.db.IDBRepository;
@@ -22,18 +22,19 @@ public class MainInteractor implements IMainInteractor {
 
     @Override
     public Observable<ActualWeatherResponse> getWeather(String cityName) {
-        //TODO можно прикрутить проверка наличия данных в базе
-        return rest.getAPI().getWeather(cityName, Urls.KEY, Urls.UNITS_KEY);
+        //TODO прикрутить проверку наличия данных в базе
+        return rest.getAPI().getWeather(cityName, StringUtils.KEY, StringUtils.UNITS_KEY);
     }
 
     @Override
     public Observable<GroupResponse> getAllWeather() {
+        //получаем из базы строку с id-шниками городов, используем её в запросе
         return db.getAllCitiesIds()
                 .flatMap(string ->
                         rest.getAPI().getAllWeather(
                                 string,
-                                Urls.KEY,
-                                Urls.UNITS_KEY
+                                StringUtils.KEY,
+                                StringUtils.UNITS_KEY
                         ));
     }
 }

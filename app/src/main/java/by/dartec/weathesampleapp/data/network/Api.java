@@ -13,16 +13,40 @@ import rx.Observable;
 
 public interface Api {
 
+    /**
+     * Получение погоды по названию города (+ возвращает id города)
+     *
+     * @param cityName
+     * @param appID
+     * @param units
+     * @return
+     */
     @GET("weather")
     Observable<ActualWeatherResponse> getWeather(@Query("q") String cityName,
                                                  @Query("APPID") String appID,
                                                  @Query("units") String units);
 
+    /**
+     * Получение погоды по id города
+     *
+     * @param cityID
+     * @param appID
+     * @param units
+     * @return
+     */
     @GET("group")
     Observable<GroupResponse> getAllWeather(@Query("id") String cityID,
                                             @Query("APPID") String appID,
                                             @Query("units") String units);
 
+    /**
+     * Получение прогноза по id города
+     *
+     * @param cityID
+     * @param appID
+     * @param units
+     * @return
+     */
     @GET("forecast")
     Observable<ForecastWeatherResponse> getWeatherForecast(@Query("id") String cityID,
                                                            @Query("APPID") String appID,
