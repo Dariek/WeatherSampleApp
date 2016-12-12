@@ -1,3 +1,3 @@
 # WeatherSampleApp
-Пример кода с применением MVP, Dagger2, Rx, Retrofit<br>
+Пример кода с применением <i>MVP, Dagger2, Rx, Retrofit</i><br>
 Базу не добавлял, только эмитирую её наличие
